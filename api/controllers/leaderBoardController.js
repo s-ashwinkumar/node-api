@@ -1,5 +1,5 @@
 'use strict';
-var db = require('../service/firestore.js').db;
+var db = require('../services/firestore.js').db;
 
 exports.get_leader_board = function(req, res) {
 

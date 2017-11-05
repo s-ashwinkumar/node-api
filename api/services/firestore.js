@@ -1,9 +1,19 @@
 'use strict';
-const admin = require('firebase-admin');
-const functions = require('firebase-functions');
 
-admin.initializeApp(functions.config().firebase);
+var admin = require("firebase-admin");
 
-var db = admin.firestore();
+var serviceAccount = require("../../adminsdk.json");
 
-module.exports.db = db;
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://lucky-or-smart.firebaseio.com"
+});
+
+// const admin = require('firebase-admin');
+// const functions = require('firebase-functions');
+
+// admin.initializeApp(functions.config().firebase);
+
+// var db = admin.firestore();
+
+module.exports.db = admin.firestore();
