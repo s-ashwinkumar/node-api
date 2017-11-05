@@ -33,7 +33,10 @@ exports.get_all = function(req, res) {
 
 exports.create_a_trivia = function(req, res) {
   var addDoc = db.collection('trivias').add(req.params.trivia)
-    .then(ref => res.json({trivia_id: ref.id}))
+    .then(ref => {
+      db.collection('leader_board').doc('ref.id').set({})
+        .then(res.json({success: true}))
+    })
     .catch(error_message => console.log(error_message));
 };
 
